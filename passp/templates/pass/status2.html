@@ -1,0 +1,129 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Passport Status</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href={% static 'passp/register-files/fonts/material-icon/css/material-design-iconic-font.min.css' %}>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <!-- Main css -->
+    <link rel="stylesheet" href={% static 'passp/register-files/css/style.css' %}>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src={% static "passp/register-files/images/pspt2.jpg" %} alt="">
+                </div>
+            
+                <div class="row clearfix signup-form">
+                    <br>
+                    <h2>Status Page</h2>
+                    <div class="col-md-12 column">
+                        {% if status == 'Y' %}
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        All Conditions Completed
+                                    </h3>
+                                </div>                
+                            </div>
+                        {% else %}
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Not All Conditions Completed
+                                </h3>
+                                </div>                
+                            </div>
+                        {% endif %}
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <div class="list-group">
+                                    
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            Ministry Verification
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            {% if ministry == 'Y' %}
+                                                <span class="label label-success">Completed</span>
+                                            {% else %}
+                                                <span class="label label-danger">Not Completed</span>  
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            Date of Verification: 
+                                            <div class="form-group">
+                                                <!-- here, initially the user will choose a date, from the next time her login instead of the combo bix he will onlu be shown a date-->
+                                                <form method="POST" class="status-date-form" id="status-date-form">
+                                                    {% if date == 'N' %}
+                                                        <input type="date" name="date">
+                                                        <input type="submit" class='btn btn-success btn-block'>
+                                                    {% else %}
+                                                        <input type="text" name="date" value = "{{date}}" disable>
+                                                    {% endif %}
+                                                </form>
+                                            </div>
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            {% if date == 'N' %}
+                                              <span class="label label-danger">Not Chosen</span>
+                                            {% else %}
+                                              <span class="label label-success">Date Chosen</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            Police Verification 
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            {% if police == 'Y' %}
+                                                <span class="label label-success">Completed</span>
+                                            {% else %}
+                                                <span class="label label-danger">Not Completed</span>  
+                                            {% endif %}
+                                        </p>
+                                    </div>
+    
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            Passport Dispatch 
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            {% if dispatch == 'Y' %}
+                                                <span class="label label-success">Passport Dispatched</span>
+                                            {% else %}
+                                                <span class="label label-danger">Not Completed</span>  
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
